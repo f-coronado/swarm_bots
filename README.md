@@ -1,5 +1,7 @@
 # Swarm_bots
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 [![codecov](https://codecov.io/gh/f-coronado/swarm_bots/branch/main/graph/badge.svg)](https://codecov.io/gh/f-coronado/swarm_bots)
 
 ![CICD Workflow status](https://github.com/f-coronado/swarm_bots/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
@@ -116,7 +118,7 @@ open build/my_model/test_coverage/index.html
 
 ## License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ### Disclaimer
 
