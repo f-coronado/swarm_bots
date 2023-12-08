@@ -127,7 +127,7 @@ doxygen_add_docs(docs           # target name
 
 # Build libraries:
 add_library (swarm_library
-  src/my_dummy_lib_funct1.cpp
+  src/linear_path.cpp
   src/my_dummy_lib_funct2.cpp
   )
 
@@ -161,7 +161,7 @@ install (TARGETS
 
 # Install the header files
 install(FILES
-  include/my_dummy_lib_funct1.hpp
+  include/linear_path.hpp
   include/my_dummy_lib_funct2.hpp
   DESTINATION include 
   )

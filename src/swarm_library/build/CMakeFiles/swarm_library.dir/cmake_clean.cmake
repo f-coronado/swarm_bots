@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct1.cpp.o"
-  "CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct1.cpp.o.d"
+  "CMakeFiles/swarm_library.dir/src/linear_path.cpp.o"
+  "CMakeFiles/swarm_library.dir/src/linear_path.cpp.o.d"
   "CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.o"
   "CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.o.d"
   "libswarm_library.a"
