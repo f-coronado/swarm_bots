@@ -32,7 +32,7 @@
 *
 */
 
-#include "linear_path.hpp"
+#include "path.hpp"
 
 int function2(int input)
 {

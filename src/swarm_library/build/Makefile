@@ -236,30 +236,6 @@ swarm_library_tester/fast:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/swarm_library_tester.dir/build.make test/CMakeFiles/swarm_library_tester.dir/build
 .PHONY : swarm_library_tester/fast
 
-src/linear_path.o: src/linear_path.cpp.o
-.PHONY : src/linear_path.o
-
-# target to build an object file
-src/linear_path.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/swarm_library.dir/build.make CMakeFiles/swarm_library.dir/src/linear_path.cpp.o
-.PHONY : src/linear_path.cpp.o
-
-src/linear_path.i: src/linear_path.cpp.i
-.PHONY : src/linear_path.i
-
-# target to preprocess a source file
-src/linear_path.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/swarm_library.dir/build.make CMakeFiles/swarm_library.dir/src/linear_path.cpp.i
-.PHONY : src/linear_path.cpp.i
-
-src/linear_path.s: src/linear_path.cpp.s
-.PHONY : src/linear_path.s
-
-# target to generate assembly for a file
-src/linear_path.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/swarm_library.dir/build.make CMakeFiles/swarm_library.dir/src/linear_path.cpp.s
-.PHONY : src/linear_path.cpp.s
-
 src/my_dummy_lib_funct2.o: src/my_dummy_lib_funct2.cpp.o
 .PHONY : src/my_dummy_lib_funct2.o
 
@@ -284,6 +260,30 @@ src/my_dummy_lib_funct2.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/swarm_library.dir/build.make CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.s
 .PHONY : src/my_dummy_lib_funct2.cpp.s
 
+src/path.o: src/path.cpp.o
+.PHONY : src/path.o
+
+# target to build an object file
+src/path.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/swarm_library.dir/build.make CMakeFiles/swarm_library.dir/src/path.cpp.o
+.PHONY : src/path.cpp.o
+
+src/path.i: src/path.cpp.i
+.PHONY : src/path.i
+
+# target to preprocess a source file
+src/path.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/swarm_library.dir/build.make CMakeFiles/swarm_library.dir/src/path.cpp.i
+.PHONY : src/path.cpp.i
+
+src/path.s: src/path.cpp.s
+.PHONY : src/path.s
+
+# target to generate assembly for a file
+src/path.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/swarm_library.dir/build.make CMakeFiles/swarm_library.dir/src/path.cpp.s
+.PHONY : src/path.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -302,12 +302,12 @@ help:
 	@echo "... uninstall"
 	@echo "... swarm_library"
 	@echo "... swarm_library_tester"
-	@echo "... src/linear_path.o"
-	@echo "... src/linear_path.i"
-	@echo "... src/linear_path.s"
 	@echo "... src/my_dummy_lib_funct2.o"
 	@echo "... src/my_dummy_lib_funct2.i"
 	@echo "... src/my_dummy_lib_funct2.s"
+	@echo "... src/path.o"
+	@echo "... src/path.i"
+	@echo "... src/path.s"
 .PHONY : help
 
 

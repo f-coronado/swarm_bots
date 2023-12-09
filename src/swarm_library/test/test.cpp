@@ -33,7 +33,7 @@
 */
 
 #include <gtest/gtest.h>
-#include "linear_path.hpp"
+#include "path.hpp"
 #include "my_dummy_lib_funct2.hpp"
 
 TEST(dummy_test, this_should_pass) {

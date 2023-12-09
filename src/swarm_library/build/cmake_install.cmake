@@ -48,7 +48,7 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
-    "/home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/include/linear_path.hpp"
+    "/home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/include/path.hpp"
     "/home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/include/my_dummy_lib_funct2.hpp"
     )
 endif()

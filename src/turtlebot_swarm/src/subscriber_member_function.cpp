@@ -35,7 +35,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
 
-#include "my_dummy_lib_funct1.hpp"
+#include "path.hpp"
 
 using std::placeholders::_1;
 using std_msgs::msg::String;

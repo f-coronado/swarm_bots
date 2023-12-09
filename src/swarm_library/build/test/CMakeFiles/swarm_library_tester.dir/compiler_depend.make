@@ -624,11 +624,11 @@ test/CMakeFiles/swarm_library_tester.dir/test.cpp.o: ../test/test.cpp \
   /usr/include/gtest/gtest_prod.h \
   /usr/include/gtest/gtest-typed-test.h \
   /usr/include/gtest/gtest_pred_impl.h \
-  ../include/my_dummy_lib_funct1.hpp \
+  ../include/linear_path.hpp \
   ../include/my_dummy_lib_funct2.hpp
 
 
-../include/my_dummy_lib_funct1.hpp:
+../include/linear_path.hpp:
 
 /usr/include/gtest/gtest_pred_impl.h:
 

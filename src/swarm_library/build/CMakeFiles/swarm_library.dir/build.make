@@ -69,19 +69,19 @@ include CMakeFiles/swarm_library.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/swarm_library.dir/flags.make
 
-CMakeFiles/swarm_library.dir/src/linear_path.cpp.o: CMakeFiles/swarm_library.dir/flags.make
-CMakeFiles/swarm_library.dir/src/linear_path.cpp.o: ../src/linear_path.cpp
-CMakeFiles/swarm_library.dir/src/linear_path.cpp.o: CMakeFiles/swarm_library.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/swarm_library.dir/src/linear_path.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/swarm_library.dir/src/linear_path.cpp.o -MF CMakeFiles/swarm_library.dir/src/linear_path.cpp.o.d -o CMakeFiles/swarm_library.dir/src/linear_path.cpp.o -c /home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/src/linear_path.cpp
+CMakeFiles/swarm_library.dir/src/path.cpp.o: CMakeFiles/swarm_library.dir/flags.make
+CMakeFiles/swarm_library.dir/src/path.cpp.o: ../src/path.cpp
+CMakeFiles/swarm_library.dir/src/path.cpp.o: CMakeFiles/swarm_library.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/swarm_library.dir/src/path.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/swarm_library.dir/src/path.cpp.o -MF CMakeFiles/swarm_library.dir/src/path.cpp.o.d -o CMakeFiles/swarm_library.dir/src/path.cpp.o -c /home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/src/path.cpp
 
-CMakeFiles/swarm_library.dir/src/linear_path.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_library.dir/src/linear_path.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/src/linear_path.cpp > CMakeFiles/swarm_library.dir/src/linear_path.cpp.i
+CMakeFiles/swarm_library.dir/src/path.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/swarm_library.dir/src/path.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/src/path.cpp > CMakeFiles/swarm_library.dir/src/path.cpp.i
 
-CMakeFiles/swarm_library.dir/src/linear_path.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_library.dir/src/linear_path.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/src/linear_path.cpp -o CMakeFiles/swarm_library.dir/src/linear_path.cpp.s
+CMakeFiles/swarm_library.dir/src/path.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/swarm_library.dir/src/path.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/src/path.cpp -o CMakeFiles/swarm_library.dir/src/path.cpp.s
 
 CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.o: CMakeFiles/swarm_library.dir/flags.make
 CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.o: ../src/my_dummy_lib_funct2.cpp
@@ -99,13 +99,13 @@ CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.s: cmake_force
 
 # Object files for target swarm_library
 swarm_library_OBJECTS = \
-"CMakeFiles/swarm_library.dir/src/linear_path.cpp.o" \
+"CMakeFiles/swarm_library.dir/src/path.cpp.o" \
 "CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.o"
 
 # External object files for target swarm_library
 swarm_library_EXTERNAL_OBJECTS =
 
-libswarm_library.a: CMakeFiles/swarm_library.dir/src/linear_path.cpp.o
+libswarm_library.a: CMakeFiles/swarm_library.dir/src/path.cpp.o
 libswarm_library.a: CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.o
 libswarm_library.a: CMakeFiles/swarm_library.dir/build.make
 libswarm_library.a: CMakeFiles/swarm_library.dir/link.txt
