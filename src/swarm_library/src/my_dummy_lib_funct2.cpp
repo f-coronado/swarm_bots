@@ -34,7 +34,3 @@
 
 #include "path.hpp"
 
-int function2(int input)
-{
-  return function1(input);
-}
