@@ -20,9 +20,9 @@ class TaskPlanningFixture : public testing::Test {
 
     /*
      * 1.) Define any ros2 package and exectuable you want to test
-     *  example: package name = cpp_pubsub, node name = minimal_publisher, executable = talker
+     *  example: package name = cpp_pubsub, node name = control, executable = talker
      */
-    bool retVal = StartROSExec ("my_controller", "minimal_publisher", "talker");
+    bool retVal = StartROSExec ("my_controller", "control", "talker");
     ASSERT_TRUE(retVal);
 
     RCLCPP_INFO_STREAM(node_->get_logger(), "DONE WITH SETUP!!");

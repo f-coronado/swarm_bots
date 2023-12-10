@@ -13,6 +13,7 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(Doxygen REQUIRED)
 find_package(swarm_library REQUIRED) # add swarm_library
+find_package(geometry_msgs REQUIRED)
 
 ############################################
 # Set up level 2 unit test (i.e, integration test)
@@ -87,20 +88,20 @@ doxygen_add_docs(docs           # target name
   )
 
 # Add executables:
-add_executable(talker
+add_executable(control
   src/publisher_member_function.cpp)
-add_executable(listener
+add_executable(agent
   src/subscriber_member_function.cpp)
 
 # Add executable dependencis:
-ament_target_dependencies(talker
-  rclcpp std_msgs)
-target_link_libraries(talker 
+ament_target_dependencies(control
+  rclcpp std_msgs geometry_msgs)
+target_link_libraries(control 
   swarm_library)
 
-ament_target_dependencies(listener
+ament_target_dependencies(agent
   rclcpp std_msgs)
-target_link_libraries(listener
+target_link_libraries(agent
   swarm_library)
 
 ###################################
@@ -109,8 +110,8 @@ target_link_libraries(listener
 
 # Install executables:
 install(TARGETS
-  talker
-  listener
+  control
+  agent
   DESTINATION lib/${PROJECT_NAME})
 
 # install launch files

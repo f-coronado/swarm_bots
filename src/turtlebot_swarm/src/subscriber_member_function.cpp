@@ -64,7 +64,6 @@ public:
         callback);
     }
 
-    function1 (23);             // test model library
   }
 
 private:

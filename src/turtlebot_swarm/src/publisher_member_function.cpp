@@ -35,56 +35,86 @@
 #include <rclcpp/logging.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
+#include <geometry_msgs/msg/twist.hpp>
+#include <vector>
 
 #include "my_dummy_lib_funct2.hpp"
+#include "path.hpp"
 
 using namespace std::chrono_literals;
 
 /* This example creates a subclass of Node and uses std::bind() to register a
  * member function as a callback from the timer. */
 
+using TWIST     = geometry_msgs::msg::Twist;
 using STRING    = std_msgs::msg::String;
-using PUBLISHER = rclcpp::Publisher<STRING>::SharedPtr;
+using PUBLISHER = rclcpp::Publisher<TWIST>::SharedPtr;
 using TIMER     = rclcpp::TimerBase::SharedPtr;
 
-class MinimalPublisher : public rclcpp::Node {
-public:
+class control : public rclcpp::Node {
+ public:
 
-  MinimalPublisher()
-    : Node("minimal_publisher"),
+  control()
+    : Node("control"),
     count_(0)
   {
-    // define topic name
-    auto topicName = "topic";
+    RCLCPP_INFO(this->get_logger(), "Initializing control node");
+
+    Path path;
 
     // creates publisher with buffer size of 10
-    publisher_ = this->create_publisher<STRING>(topicName, 10);
+    publisher_ = this->create_publisher<TWIST>("cmd_vel", 10);
+    RCLCPP_INFO(this->get_logger(), "Publisher loaded successfully");
+
 
     // creates 2 hz timer and ties the callback function
     timer_ =
       this->create_wall_timer(
         500ms,
-        std::bind(&MinimalPublisher::timer_callback, this));
+        std::bind(&control::timer_callback, this));
   }
 
-private:
+ private:
 
   size_t    count_;
   PUBLISHER publisher_;
   TIMER     timer_;
+  int nodes_;
+  std::vector<int> path_velocities; // update!!
+
 
   void timer_callback()
   {
-    // Create the message to publish
-    auto message = STRING();
+    // // Create the message to publish
+    // auto message = TWIST();
 
-    message.data = "Hello, world! " + std::to_string(count_++);
-    RCLCPP_INFO_STREAM (this->get_logger(),
-                        "Publishing: " << function2 (count_) << " " << message.data.c_str());
+    // message.data = "Hello, world! " + std::to_TWIST(count_++);
+    // RCLCPP_INFO_STREAM (this->get_logger(),
+    //                     "Publishing: " << function2 (count_) << " " << message.data.c_str());
 
-    // Publish the message
-    publisher_->publish(message);
+    // // Publish the message
+    // publisher_->publish(message);
   }
+
+  void start_path()
+  {
+
+    
+
+  }
+
+  void stop_path()
+  {
+
+    auto message = TWIST();
+    message.linear.x = 0.0;
+    message.angular.z = 0.0;
+    publisher_ -> publish(message);
+    RCLCPP_INFO(this->get_logger(), "Stopping the robots");
+
+  }
+
+
 };
 
 int main(int argc, char *argv[])
@@ -93,7 +123,7 @@ int main(int argc, char *argv[])
   rclcpp::init(argc, argv);
 
   // 2.) Start processing
-  rclcpp::spin(std::make_shared<MinimalPublisher>());
+  rclcpp::spin(std::make_shared<control>());
 
   // 3.) Shutdown ROS 2
   rclcpp::shutdown();
