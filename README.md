@@ -1,8 +1,10 @@
-# ENPM808X-final-project-boilerplate
+# Swarm_bots
 
-[![codecov](https://codecov.io/gh/TommyChangUMD/ENPM808X-final-project-boilerplate/branch/main/graph/badge.svg?token=KRAHD3BZP7)](https://codecov.io/gh/TommyChangUMD/ENPM808X-final-project-boilerplate)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-![CICD Workflow status](https://github.com/TommyChangUMD/ENPM808X-final-project-boilerplate/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
+[![codecov](https://codecov.io/gh/f-coronado/swarm_bots/branch/main/graph/badge.svg)](https://codecov.io/gh/f-coronado/swarm_bots)
+
+![CICD Workflow status](https://github.com/f-coronado/swarm_bots/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
 
 This repo provides a template for setting up:
 
@@ -109,3 +111,15 @@ open build/my_model/test_coverage/index.html
 ### Then, follow the similar instruction provided in the cpp-boilerplate-v2 repo
 
   https://github.com/TommyChangUMD/cpp-boilerplate-v2
+
+# Dependencies:
+- Doxygen
+- Lcov
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### Disclaimer
+
+This software is provided "as is" and any expressed or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the authors or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.

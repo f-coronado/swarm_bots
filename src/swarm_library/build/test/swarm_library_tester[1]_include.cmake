@@ -1,0 +1,5 @@
+if(EXISTS "/home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/build/test/swarm_library_tester[1]_tests.cmake")
+  include("/home/fabrizzio/ros2_ws/src/swarm_bots/src/swarm_library/build/test/swarm_library_tester[1]_tests.cmake")
+else()
+  add_test(swarm_library_tester_NOT_BUILT swarm_library_tester_NOT_BUILT)
+endif()
