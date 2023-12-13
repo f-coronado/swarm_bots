@@ -89,9 +89,9 @@ doxygen_add_docs(docs           # target name
 
 # Add executables:
 add_executable(control
-  src/publisher_member_function.cpp)
+  src/control.cpp)
 add_executable(agent
-  src/subscriber_member_function.cpp)
+  src/agent.cpp)
 
 # Add executable dependencis:
 ament_target_dependencies(control
@@ -100,7 +100,7 @@ target_link_libraries(control
   swarm_library)
 
 ament_target_dependencies(agent
-  rclcpp std_msgs)
+  rclcpp std_msgs geometry_msgs)
 target_link_libraries(agent
   swarm_library)
 

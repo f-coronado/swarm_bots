@@ -23,7 +23,7 @@
  ******************************************************************************/
 
 /**
-* @file walk_algorithm.cpp
+* @file agent.cpp
 * @author f-coronado
 * @brief Walkser script
 * @date 11/26/2023
@@ -48,85 +48,72 @@ using namespace std::chrono_literals;
 
 using TWIST     = geometry_msgs::msg::Twist;
 using STRING    = std_msgs::msg::String;
-using PUBLISHER = rclcpp::Publisher<TWIST>::SharedPtr;
+using SUBSCRIBER = rclcpp::Subscription<TWIST>::SharedPtr;
 using TIMER     = rclcpp::TimerBase::SharedPtr;
 
-class control : public rclcpp::Node {
+class agent : public rclcpp::Node {
  public:
 
-  control()
-    : Node("control"),
+  /**
+  * agent node which will be used to manipulate bots
+  */
+  agent()
+    : Node("agent"),
     count_(0)
   {
-    RCLCPP_INFO(this->get_logger(), "Initializing control node");
+    // RCLCPP_INFO(this->get_logger(), "Initializing agent node");
 
-    Path path;
+    // Path path;
 
-    // creates publisher with buffer size of 10
-    publisher_ = this->create_publisher<TWIST>("cmd_vel", 10);
-    RCLCPP_INFO(this->get_logger(), "Publisher loaded successfully");
+    // // creates publisher with buffer size of 10
+    // subscriber_ = this->create_subscription<TWIST>("cmd_vel", 10);
+    // RCLCPP_INFO(this->get_logger(), "Publisher loaded successfully");
 
-
-    // creates 2 hz timer and ties the callback function
-    timer_ =
-      this->create_wall_timer(
-        500ms,
-        std::bind(&control::timer_callback, this));
+    // // creates 2 hz timer and ties the callback function
+    // timer_ =
+    //   this->create_wall_timer(
+    //     500ms,
+    //     std::bind(&agent::timer_callback, this));
   }
 
  private:
 
+  /**
+  * @brief Private members needed for agent node and other methods
+  */
   size_t    count_;
-  PUBLISHER publisher_;
+  SUBSCRIBER subscriber_;
   TIMER     timer_;
-  int nodes_;
-  std::vector<int> path_velocities; // update!!
+  float x_vel;
+  float y_vel;
+  float z_vel;
+  float roll;
+  float pitch;
+  float yaw;
+  int robot_num;
 
-
-  void timer_callback()
-  {
-    // // Create the message to publish
-    // auto message = TWIST();
-
-    // message.data = "Hello, world! " + std::to_TWIST(count_++);
-    // RCLCPP_INFO_STREAM (this->get_logger(),
-    //                     "Publishing: " << function2 (count_) << " " << message.data.c_str());
-
-    // // Publish the message
-    // publisher_->publish(message);
-  }
-
-  void start_path()
+  /**
+  * @brief starts moving all the bots
+  */
+  void move()
   {
 
+    RCLCPP_INFO(this->get_logger(), "Starting the robots");
     
-
   }
 
-  void stop_path()
+  /**
+  * @brief stops moving all the bots
+  */
+  void stop()
   {
 
-    auto message = TWIST();
-    message.linear.x = 0.0;
-    message.angular.z = 0.0;
-    publisher_ -> publish(message);
+    // auto message = TWIST();
+    // message.linear.x = 0.0;
+    // message.angular.z = 0.0;
+    // subscriber_ -> publish(message);
     RCLCPP_INFO(this->get_logger(), "Stopping the robots");
 
   }
 
-
 };
-
-int main(int argc, char *argv[])
-{
-  // 1.) Initialize ROS 2 C++ client library
-  rclcpp::init(argc, argv);
-
-  // 2.) Start processing
-  rclcpp::spin(std::make_shared<control>());
-
-  // 3.) Shutdown ROS 2
-  rclcpp::shutdown();
-
-  return 0;
-}
