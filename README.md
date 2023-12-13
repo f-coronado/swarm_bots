@@ -6,6 +6,11 @@
 
 ![CICD Workflow status](https://github.com/f-coronado/swarm_bots/actions/workflows/run-unit-test-and-upload-codecov.yml/badge.svg)
 
+# Phase 1 Logs
+https://drive.google.com/drive/folders/1ltB3tIcugKpeDje7qDEQy7WUJzHPNTlJ?usp=sharing
+
+All logs can be found here^
+
 This repo provides a template for setting up:
 
   - GitHub CI
