@@ -39,6 +39,10 @@
 class Path {
  private:
 
+
+    /**
+    *@brief private members needed for generate_path function
+    */
     struct PathEntry {
         float x_vel;
         float y_vel;
@@ -48,6 +52,9 @@ class Path {
         float yaw;
     };
 
+    /**
+    *@brief private members needed for generate_path function
+    */
     std::vector<PathEntry> path_;
     std::string shape;
 
