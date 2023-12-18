@@ -25,7 +25,7 @@
 /**
 * @file agent.cpp
 * @author f-coronado
-* @brief Walkser script
+* @brief Agent script
 * @date 11/26/2023
 *
 * @copyright Copyright (c) 2023
@@ -117,3 +117,11 @@ class agent : public rclcpp::Node {
   }
 
 };
+
+int main(int argc, char *argv[]){
+
+  rclcpp::init(argc, argv);
+  rclcpp::spin(std::make_shared<agent>());
+  rclcpp::shutdown();
+  return 0;
+}
