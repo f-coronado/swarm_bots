@@ -117,7 +117,7 @@ def path_points(rad, num):
     points_list = [(radius * np.cos(angle), radius * np.sin(angle)) for angle in theta]
     return points_list
 
-def trajectory_dict(lst):
+def trajectory_dict(lst): # final, 1st is where they start the loop, end of each element is the final
     rotated_lists = {}
     rotations = len(lst)
 
@@ -149,6 +149,7 @@ def main():
 
     path = path_points(circle_rad, num_envs)
     rotated_paths = trajectory_dict(path)
+    print("rotated paths from trajectory_dict: ", rotated_paths)
 
     fig, ax = plt.subplots()
     plt.xlabel('X-axis')
