@@ -142,6 +142,15 @@ int main() {
         }
         std::cout << std::endl;
     }
+    std::cout << "\n\nrotatedPaths first trajectory vector: " << std::endl;
+
+    for (const auto& path : rotatedPaths) {
+      std::cout << "{";
+      for (const auto& point : path) {
+          std::cout << "{" << point.first << ", " << point.second << "}, ";
+      }
+      std::cout << "},   // Robot " << (&path - &rotatedPaths[0]) << std::endl;
+    }
 
 
 
