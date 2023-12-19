@@ -93,11 +93,16 @@ add_executable(control
 add_executable(agent
   src/agent.cpp)
 
-# Add executable dependencis:
+# Add executable dependencies:
 ament_target_dependencies(control
   rclcpp std_msgs geometry_msgs)
-target_link_libraries(control 
-  swarm_library)
+target_link_libraries(control swarm_library)
+#add_library(ros2_library src/agent.cpp src/control.cpp)
+#target_include_directories(ros2_library PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+#ament_target_dependencies(ros2_library  rclcpp std_msgs geometry_msgs)
+#target_link_directories(control PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+#target_link_libraries(control ros2_library)
+
 
 ament_target_dependencies(agent
   rclcpp std_msgs geometry_msgs)

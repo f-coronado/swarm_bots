@@ -31,6 +31,7 @@
 * @copyright Copyright (c) 2023
 *
 */
+// #include "turtlebot_swarm/agent.cpp"
 
 #include <rclcpp/logging.hpp>
 #include <rclcpp/rclcpp.hpp>
@@ -38,7 +39,6 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <vector>
 
-#include "my_dummy_lib_funct2.hpp"
 #include "path.hpp"
 
 using namespace std::chrono_literals;
@@ -49,6 +49,7 @@ using namespace std::chrono_literals;
 using TWIST     = geometry_msgs::msg::Twist;
 using STRING    = std_msgs::msg::String;
 using SUBSCRIBER = rclcpp::Subscription<TWIST>::SharedPtr;
+using PUBLISHER = rclcpp::Publisher<TWIST>::SharedPtr;
 using TIMER     = rclcpp::TimerBase::SharedPtr;
 
 class agent : public rclcpp::Node {
@@ -83,6 +84,8 @@ class agent : public rclcpp::Node {
   */
   size_t    count_;
   SUBSCRIBER subscriber_;
+  PUBLISHER move_publisher_;
+
   TIMER     timer_;
   float x_vel;
   float y_vel;
@@ -95,10 +98,14 @@ class agent : public rclcpp::Node {
   /**
   * @brief starts moving all the bots
   */
-  void move()
+  void move(float ang_z, float lin_x)
   {
 
-    RCLCPP_INFO(this->get_logger(), "Starting the robots");
+    TWIST msg;
+    msg.linear.x = lin_x;
+    msg.angular.z = ang_z;
+    move_publisher_->publish(msg);
+    RCLCPP_INFO(this->get_logger(), "Moving the robots");
     
   }
 
@@ -108,10 +115,10 @@ class agent : public rclcpp::Node {
   void stop()
   {
 
-    // auto message = TWIST();
-    // message.linear.x = 0.0;
-    // message.angular.z = 0.0;
-    // subscriber_ -> publish(message);
+    TWIST msg;
+    msg.linear.x = 0.0;
+    msg.angular.z = 0.0;
+    move_publisher_ -> publish(msg);
     RCLCPP_INFO(this->get_logger(), "Stopping the robots");
 
   }

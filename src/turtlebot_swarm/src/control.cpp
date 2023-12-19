@@ -25,12 +25,13 @@
 /**
 * @file control.cpp
 * @author f-coronado
-* @brief Walkser script
+* @brief Control script
 * @date 11/26/2023
 *
 * @copyright Copyright (c) 2023
 *
 */
+
 
 #include <rclcpp/logging.hpp>
 #include <rclcpp/rclcpp.hpp>
@@ -38,13 +39,9 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <vector>
 
-#include "my_dummy_lib_funct2.hpp"
 #include "path.hpp"
 
 using namespace std::chrono_literals;
-
-/* This example creates a subclass of Node and uses std::bind() to register a
- * member function as a callback from the timer. */
 
 using TWIST     = geometry_msgs::msg::Twist;
 using STRING    = std_msgs::msg::String;
@@ -55,25 +52,64 @@ class control : public rclcpp::Node {
  public:
 
   /**
-  * Control node which will be used to manipulate bots
+  * @brief Control node which will be used to manipulate bots
   */
   control()
     : Node("control"),
     count_(0)
   {
     RCLCPP_INFO(this->get_logger(), "Initializing control node");
+    struct Robot {
+        double position[3];
+        double orientation[3];
+    };
 
-    Path path;
+    int numEnvs, circleRad;
+    std::cout << "Enter the number of nodes: ";
+    std::cin >> numEnvs;
+    std::cout << "Enter the radius of the circle: ";
+    std::cin >> circleRad;
+
+    int matrixSize;
+    double thetaStep;
+    int rotations;
+
+    Path pathInst(matrixSize, thetaStep, rotations);
+
+    std::vector<Path::Robot> robots = pathInst.createRobots(numEnvs);
+    std::vector<Path::Robot> initialPositions = pathInst.startPositions(numEnvs);
+
+    for (size_t i = 0; i < robots.size(); ++i) {
+        robots[i] = initialPositions[i];
+    }
+
+    std::vector<std::pair<double, double>> path_pts = pathInst.pathPoints(circleRad, numEnvs);
+    std::vector<std::vector<std::pair<double, double>>> rotatedPaths = pathInst.trajectoryDict(path_pts);
+    std::cout << "rotatedPaths: " << std::endl;
+    std::cout << "position[3], orientation[3] " << std::endl;
+
+    for (size_t i = 0; i < rotatedPaths.size(); ++i) {
+        std::cout << "Robot " << i << ": ";
+        for (size_t j = 0; j < rotatedPaths[i].size(); ++j) {
+            std::cout << "(" << rotatedPaths[i][j].first << ", " << rotatedPaths[i][j].second << ") ";
+        }
+        std::cout << std::endl;
+    }
+
+
+    this->nodes_ = nodes_;
+    // this->agents = agents;
 
     // creates publisher with buffer size of 10
     publisher_ = this->create_publisher<TWIST>("cmd_vel", 10);
-    RCLCPP_INFO(this->get_logger(), "Publisher loaded successfully");
 
     // creates 2 hz timer and ties the callback function
     timer_ =
       this->create_wall_timer(
         500ms,
         std::bind(&control::timer_callback, this));
+
+    RCLCPP_INFO(this->get_logger(), "Publisher loaded successfully");
   }
 
  private:
@@ -84,7 +120,8 @@ class control : public rclcpp::Node {
   size_t    count_;
   PUBLISHER publisher_;
   TIMER     timer_;
-  int nodes_;
+  int       nodes_;
+  // std::vector<std::shared_ptr<Agent>> &agents;
   std::vector<int> path_velocities; // update!!
 
   /**
@@ -94,15 +131,7 @@ class control : public rclcpp::Node {
   */
   void timer_callback()
   {
-    // // Create the message to publish
-    // auto message = TWIST();
 
-    // message.data = "Hello, world! " + std::to_TWIST(count_++);
-    // RCLCPP_INFO_STREAM (this->get_logger(),
-    //                     "Publishing: " << function2 (count_) << " " << message.data.c_str());
-
-    // // Publish the message
-    // publisher_->publish(message);
   }
 
   /**
@@ -111,8 +140,19 @@ class control : public rclcpp::Node {
   void start_path()
   {
 
-    RCLCPP_INFO(this->get_logger(), "Starting the robots");
-    
+    RCLCPP_INFO(this->get_logger(), "Starting the path");
+    int num = 0;
+    // for (float i = 0 i < )
+
+    // for (int i = 0; i < path_velocities.size(); ){
+      // RCLCPP_INFO(this->get_logger(), "Moving in path");
+      
+      // construct twist message to publish to bots
+      // auto message = TWIST();
+      // message.linear.x = path_velocities[i][0];
+      // message.angular.z = path_velocities[i][0];
+      // publisher_ -> publish(message);
+
   }
 
   /**
@@ -135,6 +175,10 @@ int main(int argc, char *argv[])
 {
   // 1.) Initialize ROS 2 C++ client library
   rclcpp::init(argc, argv);
+
+  // std::vector<std::shared_ptr<Agent>>
+  int nodes_ = 20;
+  int count_ = 0;
 
   // 2.) Start processing
   rclcpp::spin(std::make_shared<control>());
