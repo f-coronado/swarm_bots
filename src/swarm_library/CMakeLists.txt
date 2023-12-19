@@ -125,10 +125,12 @@ doxygen_add_docs(docs           # target name
   ${PROJECT_SOURCE_DIR}/test
   )
 
+# Add executables:
+add_executable(path src/path.cpp)
+
 # Build libraries:
 add_library (swarm_library
   src/path.cpp
-  src/my_dummy_lib_funct2.cpp
   )
 
 # Specify where the associated include files are
@@ -136,15 +138,14 @@ target_include_directories (swarm_library PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>  
     $<INSTALL_INTERFACE:include> 
     PUBLIC ${OpenCV_INCLUDE_DIRS}
-    PUBLIC ${rclcpp_INCLUDE_DIRS}
     ) 
 
 # Specify where the associated libraries are
 # Any dependent libraires needed to build this target.
-target_link_libraries(swarm_library
+target_link_libraries(path
+  swarm_library
   # list of libraries
   ${OpenCV_LIBRARIES}
-  ${rclcpp_LIBRARIES}
   )
 
 
@@ -162,7 +163,6 @@ install (TARGETS
 # Install the header files
 install(FILES
   include/path.hpp
-  include/my_dummy_lib_funct2.hpp
   DESTINATION include 
   )
 
