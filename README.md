@@ -14,18 +14,8 @@ Swarm Robotics is an innovative field of robotics that draws inspiration from th
 |Kautilya Chappidi|1412kauti|kautilya@umd.edu|
 
 
-## Demo Video, UML Diagram, Logs, Planning Meetings and more 
+#### Demo Video, UML Diagram, Logs, Planning Meetings and more can be found [here](https://drive.google.com/drive/folders/1ltB3tIcugKpeDje7qDEQy7WUJzHPNTlJ?usp=sharing)
 
-## How to generate package dependency graph
-
-``` bash
-colcon graph --dot | dot -Tpng -o depGraph.png
-open depGraph.png
-```
-[<img src=screenshots/depGraph.png
-    width="20%" 
-    style="display: block; margin: 0 auto"
-    />](screenshots/depGraph.png)
 
 ## System Requirements
 Ubuntu 22.04 LTS with ROS2 Humble are recommended for the turtlebot_swarm package
@@ -120,7 +110,9 @@ open build/swarm_library/test_coverage/index.html
 
 ## Known bugs
 If you are unable to build turtlebot_swarm then please try the following:
-1. 
+1. Download the repo
+2. git checkout bca92568a594303528d870e336a2b1f37440cec2
+3. Retry steps from above
 
 ## License
 
