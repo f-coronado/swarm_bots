@@ -1,3 +1,33 @@
+# /******************************************************************************
+#  * MIT License
+#  *
+#  * Copyright (c) 2022 Fabrizzio Coronado
+#  *
+#  * Permission is hereby granted, free of charge, to any person obtaining a copy
+#  * of this software and associated documentation files (the "Software"), to deal
+#  * in the Software without restriction, including without limitation the rights
+#  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  * copies of the Software, and to permit persons to whom the Software is
+#  * furnished to do so, subject to the following conditions:
+#  *
+#  * The above copyright notice and this permission notice shall be included in
+#  * all copies or substantial portions of the Software.
+#  *
+#  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#  * SOFTWARE.
+#  ******************************************************************************/
+
+"""
+multi_robot_publisher.py
+Author: 1412kauti, f-coronado
+Date: 11/26/2023
+"""
+
 # Import necessary modules
 import os
 import sys
@@ -12,6 +42,12 @@ from ament_index_python.packages import get_package_share_directory
 
 # Function to generate circular path points
 def path_points(rad, num):
+"""
+Constructs a list of points to follow
+
+Args:
+    rad (double) : the radius of the circle
+"""
     radius = rad
     num_points = num
     theta = np.linspace(0, 2 * np.pi, num_points + 1)
@@ -26,7 +62,9 @@ except ValueError:
     print("Invalid input. Please enter a valid number.")
     sys.exit(1)
 
-# Generate launch description
+"""
+Create description for launch file
+"""
 def generate_launch_description():
     ld = LaunchDescription()
 
