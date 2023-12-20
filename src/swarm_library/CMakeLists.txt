@@ -1,9 +1,12 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.14)
 project(swarm_library)
 
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
+include(CMakePackageConfigHelpers)
+include(CTest)
+
+# GoogleTest requires at least C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 ###################################################
 # Create the compilation database for clangd and move it out of the build dir.
@@ -20,6 +23,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(Doxygen REQUIRED)
+find_package(GTest REQUIRED)
 
 ############################################
 # Set up unit test and code coverage generation.
@@ -129,12 +133,12 @@ target_include_directories(swarm_library PUBLIC
   PUBLIC 
     ${rclcpp_INCLUDE_DIRS}
     ${geometry_msgs_INCLUDE_DIRS}
+    ${Gtest_INCLUDE_DIRS}
 )
 # Link against external libraries
 target_link_libraries(swarm_library
   ${rclcpp_LIBRARIES}
   ${geometry_msgs_LIBRARIES}
-  # geometry_msgs::geometry_msgs
 )
 
 

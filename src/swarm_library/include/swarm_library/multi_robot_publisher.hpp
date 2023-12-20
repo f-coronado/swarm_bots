@@ -23,43 +23,42 @@
  ******************************************************************************/
 
 /**
-* @file multi_robot_publisher.hpp
-* @author 1412kauti, f-coronado
-* @brief multi robot publisher header file
-* @date 11/26/2023
-*
-* @copyright Copyright (c) 2023
-*
-*/
+ * @file multi_robot_publisher.hpp
+ * @author 1412kauti, f-coronado
+ * @brief multi robot publisher header file
+ * @date 11/26/2023
+ *
+ * @copyright Copyright (c) 2023
+ *
+ */
 
 #ifndef MULTI_ROBOT_PUBLISHER_HPP
 #define MULTI_ROBOT_PUBLISHER_HPP
 
-#include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/twist.hpp"
+#include "rclcpp/rclcpp.hpp"
 
 class MultiRobotPublisher {
-public:
+ public:
+  /**
+   * @brief Used to initialize a node named multi_robot_publisher
+   */
+  MultiRobotPublisher(int num_robots);
+  ~MultiRobotPublisher();
 
-    /**
-    * @brief Used to initialize a node named multi_robot_publisher
-    */
-    MultiRobotPublisher(int num_robots);
-    ~MultiRobotPublisher();
+  int getNumRobots() const { return num_robots; }
 
-    int getNumRobots() const { return num_robots; }
+  void publishMessages();
 
-    void publishMessages();
-
-private:
-
-    /**< used for creating the MultiRobotPublisher node */
-    rclcpp::Node::SharedPtr node; 
-    /**< used for creating pubslihers */
-    std::vector<rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr> publishers;
-    /**< used for constructing twist messge to publish */
-    std::shared_ptr<geometry_msgs::msg::Twist> message;
-    int num_robots;
+ private:
+  /**< used for creating the MultiRobotPublisher node */
+  rclcpp::Node::SharedPtr node;
+  /**< used for creating pubslihers */
+  std::vector<rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr>
+      publishers;
+  /**< used for constructing twist messge to publish */
+  std::shared_ptr<geometry_msgs::msg::Twist> message;
+  int num_robots;
 };
 
-#endif // MULTI_ROBOT_PUBLISHER_HPP
+#endif  // MULTI_ROBOT_PUBLISHER_HPP

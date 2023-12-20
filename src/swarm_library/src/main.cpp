@@ -23,31 +23,33 @@
  ******************************************************************************/
 
 /**
-* @file main.cpp
-* @author 1412kauti
-* @brief main file
-* @date 11/26/2023
-*
-* @copyright Copyright (c) 2023
-*
-*/
+ * @file main.cpp
+ * @author 1412kauti
+ * @brief main file
+ * @date 11/26/2023
+ *
+ * @copyright Copyright (c) 2023
+ *
+ */
 
-#include "swarm_library/multi_robot_publisher.hpp"
 #include <iostream>
 
+#include "swarm_library/multi_robot_publisher.hpp"
+
 int main() {
-    /**
-    * @brief ask the user the deisred number of robots
-    */
-    int num_robots;
-    std::cout << "Enter number of robots: ";
-    std::cin >> num_robots;
+  /**
+   * @brief ask the user the deisred number of robots
+   */
+  int num_robots;
+  std::cout << "Enter number of robots: ";
+  std::cin >> num_robots;
 
-    /**
-    * @brief Create the user defined amount of publishers and call publishMessages
-    */
-    MultiRobotPublisher multiRobotPublisher(num_robots);
-    multiRobotPublisher.publishMessages();
+  /**
+   * @brief Create the user defined amount of publishers and call
+   * publishMessages
+   */
+  MultiRobotPublisher multiRobotPublisher(num_robots);
+  multiRobotPublisher.publishMessages();
 
-    return 0;
+  return 0;
 }

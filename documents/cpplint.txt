@@ -1,0 +1,12 @@
+fabrizzio@fabrizzio-lenovo:swarm_library$ cpplint --filter="-legal/copyright" $( find . -name *.cpp | grep -vE -e "^./build/" ) 
+
+Done processing ./src/main.cpp
+Done processing ./src/multi_robot_publisher.cpp
+Done processing ./test/main.cpp
+Done processing ./test/test.cpp
+
+fabrizzio@fabrizzio-lenovo:turtlebot_swarm$ cpplint --filter="-legal/copyright" $( find . -name *.cpp | grep -vE -e "^./build/" ) 
+Done processing ./src/main.cpp
+Done processing ./src/path_points.cpp
+Done processing ./test/main.cpp
+Done processing ./test/test.cpp

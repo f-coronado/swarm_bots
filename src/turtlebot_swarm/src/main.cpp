@@ -32,8 +32,8 @@
 *
 */
 
-#include "swarm_library/multi_robot_publisher.hpp"
 #include <iostream>
+#include "swarm_library/multi_robot_publisher.hpp"
 
 int main() {
     int num_robots;

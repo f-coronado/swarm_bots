@@ -10,10 +10,6 @@ TEST(MultiRobotPublisherTest, PublishMessages) {
     // Test the publishMessages method
     MultiRobotPublisher publisher(2);
 
-    // Your implementation may involve creating a ROS 2 executor or a mock node for testing.
-    // Here, we assume that the publishMessages method works correctly without actual message publishing.
-
-    // Calling the method should not cause any crashes or errors.
     ASSERT_NO_THROW({
         publisher.publishMessages();
     });

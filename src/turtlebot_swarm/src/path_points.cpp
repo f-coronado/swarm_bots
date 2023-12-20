@@ -50,14 +50,15 @@ void publish_messages(rclcpp::Node::SharedPtr node, int robot_index) {
 
     while (rclcpp::ok()) {
         publisher->publish(*message);
-        RCLCPP_INFO(node->get_logger(), "Published message for robot_%d", robot_index);
+        RCLCPP_INFO(node->get_logger(), "Published message for robot_%d",
+            robot_index);
         rclcpp::spin_some(node);
     }
 }
 
 int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
-    
+
     /**
     * @brief gather user input
     */
@@ -73,7 +74,8 @@ int main(int argc, char** argv) {
     /**
     * @brief Create vector of publishers
     */
-    std::vector<rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr> publishers;
+    std::vector<rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr>
+        publishers;
     for (int i = 0; i < num_robots; ++i) {
         publishers.push_back(node->create_publisher<geometry_msgs::msg::Twist>(
             "/robot_" + std::to_string(i) + "/cmd_vel", 10));
@@ -92,7 +94,8 @@ int main(int argc, char** argv) {
     while (rclcpp::ok()) {
         for (int i = 0; i < num_robots; ++i) {
             publishers[i]->publish(*message);
-            RCLCPP_INFO(node->get_logger(), "Published message for robot_%d", i);
+            RCLCPP_INFO(node->get_logger(),
+                "Published message for robot_%d", i);
         }
         rclcpp::spin_some(node);
     }
