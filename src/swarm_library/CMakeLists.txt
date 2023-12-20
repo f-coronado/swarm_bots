@@ -46,6 +46,16 @@ install(FILES
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
 export(PACKAGE swarm_library)
 
+
+
+export(TARGETS
+  swarm_library
+  FILE swarm_library-export.cmake
+)
+
+set (CMAKE_EXPORT_PACKAGE_REGISTRY ON)
+export(PACKAGE swarm_library)
+
 # Install the export group
 install(EXPORT swarm_library-export
   DESTINATION share/${PROJECT_NAME}/cmake/
