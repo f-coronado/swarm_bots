@@ -7,9 +7,17 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+# Add executable
+add_executable(velocity_pub src/path_points.cpp)
+
+# Link dependencies
+ament_target_dependencies(velocity_pub rclcpp geometry_msgs)
 
 install(DIRECTORY
 launch
@@ -24,8 +32,13 @@ install(
 install(
 PROGRAMS
 launch/run_demo.launch.py
+scripts/path_points.py
 DESTINATION lib/${PROJECT_NAME}
 )
+
+install(TARGETS
+  velocity_pub
+  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
