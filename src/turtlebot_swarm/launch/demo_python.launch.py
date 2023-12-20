@@ -28,7 +28,6 @@ Author: 1412kauti, f-coronado
 Date: 11/26/2023
 """
 
-# Import necessary modules
 import os
 import sys
 import numpy as np
@@ -42,12 +41,6 @@ from ament_index_python.packages import get_package_share_directory
 
 # Function to generate circular path points
 def path_points(rad, num):
-"""
-Constructs a list of points to follow
-
-Args:
-    rad (double) : the radius of the circle
-"""
     radius = rad
     num_points = num
     theta = np.linspace(0, 2 * np.pi, num_points + 1)
@@ -62,9 +55,7 @@ except ValueError:
     print("Invalid input. Please enter a valid number.")
     sys.exit(1)
 
-"""
-Create description for launch file
-"""
+# Generate launch description
 def generate_launch_description():
     ld = LaunchDescription()
 

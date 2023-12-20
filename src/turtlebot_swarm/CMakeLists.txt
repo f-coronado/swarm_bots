@@ -134,10 +134,10 @@ launch
 DESTINATION share/${PROJECT_NAME}/
 )
 
-install(
-    DIRECTORY include/${PROJECT_NAME}/
-    DESTINATION include
-    )
+# install(
+#     # DIRECTORY include/${PROJECT_NAME}/
+#     DESTINATION include
+#     )
 
 install(
 PROGRAMS

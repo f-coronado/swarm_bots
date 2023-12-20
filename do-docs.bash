@@ -25,7 +25,7 @@ set -u                          # re-enable undefined variable check
 ###############################
 colcon build \
        --event-handlers console_cohesion+ \
-       --packages-select my_model \
+       --packages-select swarm_library \
        --cmake-target "docs"
 ##echo "open src/my_model/docs/html/index.html"
 
@@ -34,7 +34,7 @@ colcon build \
 ###############################
 colcon build \
        --event-handlers console_cohesion+ \
-       --packages-select my_controller \
+       --packages-select turtlebot_swarm \
        --cmake-target "docs"
 ##echo "open src/my_controller/docs/html/index.html"
 

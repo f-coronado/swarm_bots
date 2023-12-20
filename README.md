@@ -8,11 +8,10 @@
 # Introduction
 Swarm Robotics is an innovative field of robotics that draws inspiration from the collective behavior observed in natural swarms, such as flocks of birds or colonies of ants. In the realm of robotics, it involves the coordination and collaboration of numerous simple robots, known as agents or drones, to perform tasks in a decentralized and self-organized manner. These autonomous agents communicate and interact with each other to achieve a common goal, demonstrating emergent behavior that is often more robust, adaptable, and efficient than that of individual robots. The principles of Swarm Robotics have found applications in various domains, including agriculture, search and rescue missions, environmental monitoring, and industrial automation. This GitHub repository aims to provide a self contained cpp based module, swarm_library, that can easily swapped any ros2 package for trajectory generation. Furthermore, this repo contains a ros2 package, turtlebot_swarm, which showcases using the swarm_library for a swarm demo. This repo was created in a 4 week log AIP process, all planning meetings, logs and more can be found [here](https://drive.google.com/drive/folders/1ltB3tIcugKpeDje7qDEQy7WUJzHPNTlJ?usp=sharing)
 
-|Name|ID|Email|
+|Name|Github UserID|Email|
 |:---:|:---:|:---:|
 |Fabrizio Coronado|f-coronado|fcoronad@umd.edu|
-|Kautilya Chappidi||@umd.edu|
-
+|Kautilya Chappidi|1412kauti|kautilya@umd.edu|
 
 
 ## Demo Video, UML Diagram, Logs, Planning Meetings and more 
@@ -38,10 +37,13 @@ sudo apt-get update
 rosdep install -i --from-path src --rosdistro humble -y
 sudo apt-get install doxygen
 sudo apt-get install lcov
+sudo apt install ros-humble-turtlebot3*
+sudo apt install pandoc
 ```
 Next build the swarm_library cpp module
 ```bash
-rm -rf build/ install/
+colcon build --packages-select swarm_library
+source install/setup.bash
 ```
 Lastly, build the turtlebot_swarm ros2 package
 ```bash
@@ -53,17 +55,23 @@ source install/setup.bash
 By default run_demo.launch.py spawns 20 turtlebot
 ```bash
 ros2 launch turtlebot_swarm run_demo.launch.py 
+# alternatively
+ros2 launch turtlebot_swarm demo_python.launch.py
 ```
 If you want to spawn 10 bots or any number of bots
 ```bash
 ros2 launch turtlebot_swarm run_demo.launch.py node_number:=10 
+```
+To see the bots move
+```bash
+ros2 run turtlebot_swarm velocity_pub
 ```
 
 ## How to build for tests (unit test and integration test)
 
 ```bash
 rm -rf build/ install/
-colcon build --cmake-args -DCOVERAGE=1 
+colcon build --cmake-args -DCOVERAGE=1
 ```
 
 ## How to run tests (unit and integration)
@@ -109,6 +117,10 @@ open build/swarm_library/test_coverage/index.html
 ``` bash
 ./do-docs.bash
 ```
+
+## Known bugs
+If you are unable to build turtlebot_swarm then please try the following:
+1. 
 
 ## License
 
