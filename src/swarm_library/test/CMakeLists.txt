@@ -1,3 +1,4 @@
+find_package(geometry_msgs REQUIRED)
 # Any C++ source files needed to build this target (swarm_library_tester).
 add_executable(swarm_library_tester
   # list of source cpp files:
@@ -11,16 +12,18 @@ add_executable(swarm_library_tester
 target_include_directories(swarm_library_tester PUBLIC
   # list of include directories:
   ${CMAKE_SOURCE_DIR}/include
+  ${geometry_msgs_INCLUDE_DIRS}
   )
 
 # Any dependent libraires needed to build this target.
 target_link_libraries(swarm_library_tester PUBLIC
   # list of libraries:
   gtest
+  ${geometry_msgs_LIBRARIES}
   swarm_library
   )
 
-# Enable CMake’s test runner to discover the tests included in the
+# Enable CMakes test runner to discover the tests included in the
 # binary, using the GoogleTest CMake module.
 gtest_discover_tests(swarm_library_tester)
 

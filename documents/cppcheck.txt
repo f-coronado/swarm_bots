@@ -1,0 +1,26 @@
+fabrizzio@fabrizzio-lenovo:swarm_library$ cppcheck --enable=all --std=c++11 -I include/ --suppress=missingInclude $( find . -name *.cpp | grep -vE -e "^./build/" )
+Checking src/main.cpp ...
+include/swarm_library/multi_robot_publisher.hpp:46:3: style: Class 'MultiRobotPublisher' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+  MultiRobotPublisher(int num_robots);
+  ^
+1/4 files checked 27% done
+Checking src/multi_robot_publisher.cpp ...
+2/4 files checked 66% done
+Checking test/main.cpp ...
+3/4 files checked 68% done
+Checking test/test.cpp ...
+4/4 files checked 100% done
+
+fabrizzio@fabrizzio-lenovo:turtlebot_swarm$ cppcheck --enable=all --std=c++11 -I include/ --suppress=missingInclude $( find . -name *.cpp | grep -vE -e "^./build/" )
+(information) Couldn't find path given by -I 'include/'
+Checking src/main.cpp ...
+1/4 files checked 30% done
+Checking src/path_points.cpp ...
+2/4 files checked 89% done
+Checking test/main.cpp ...
+3/4 files checked 92% done
+Checking test/test.cpp ...
+4/4 files checked 100% done
+src/path_points.cpp:43:0: style: The function 'publish_messages' is never used. [unusedFunction]
+
+^

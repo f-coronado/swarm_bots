@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 project(swarm_library)
 
-#This package allows us to write config files that can be relocated, paths are not hard-coded.
-include ( CMakePackageConfigHelpers )
+include(CMakePackageConfigHelpers)
+include(CTest)
 
 # GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 14)
@@ -16,15 +16,14 @@ execute_process(COMMAND cmake -E create_symlink
                 "${PROJECT_BINARY_DIR}/compile_commands.json"
                 "${PROJECT_SOURCE_DIR}/compile_commands.json")
 
-
 ###################################
 # find dependencies
 ###################################
-find_package(OpenCV REQUIRED)
-find_package(GTest REQUIRED)
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(Doxygen REQUIRED)
-find_package(rclcpp REQUIRED)   # allow ROScpp library 
-
+find_package(GTest REQUIRED)
 
 ############################################
 # Set up unit test and code coverage generation.
@@ -81,8 +80,6 @@ include(GoogleTest)
 message(STATUS "CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
 message(STATUS "WANT_COVERAGE    = ${WANT_COVERAGE}")
 
-
-
 ###################################################
 # Doxygen Rules
 # ref: https://cmake.org/cmake/help/latest/module/FindDoxygen.html
@@ -113,7 +110,6 @@ else()
   message( FATAL_ERROR "Doxygen needs to be installed to generate the doxygen documentation" )
 endif()
 
-
 ###################################
 # Specify Targets
 ###################################
@@ -125,67 +121,74 @@ doxygen_add_docs(docs           # target name
   ${PROJECT_SOURCE_DIR}/test
   )
 
+# Add your library source files
 # Build libraries:
-add_library (swarm_library
-  src/path.cpp
-  src/my_dummy_lib_funct2.cpp
-  )
+add_library(swarm_library
+  src/multi_robot_publisher.cpp
+)
 
-# Specify where the associated include files are
-target_include_directories (swarm_library PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>  
-    $<INSTALL_INTERFACE:include> 
-    PUBLIC ${OpenCV_INCLUDE_DIRS}
-    PUBLIC ${rclcpp_INCLUDE_DIRS}
-    ) 
-
-# Specify where the associated libraries are
-# Any dependent libraires needed to build this target.
+target_include_directories(swarm_library PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+  PUBLIC 
+    ${rclcpp_INCLUDE_DIRS}
+    ${geometry_msgs_INCLUDE_DIRS}
+    ${Gtest_INCLUDE_DIRS}
+)
+# Link against external libraries
 target_link_libraries(swarm_library
-  # list of libraries
-  ${OpenCV_LIBRARIES}
   ${rclcpp_LIBRARIES}
-  )
+  ${geometry_msgs_LIBRARIES}
+)
 
-
-###################################
-# Installation
-###################################
 
 # Install executables and libraries:
-install (TARGETS
+install(TARGETS
   swarm_library
-  EXPORT swarm_library-export      # Add targets to a export group named "swarm_library-export"
+  EXPORT swarm_library-export
   DESTINATION lib/${PROJECT_NAME}
-  )
+)
 
-# Install the header files
+# Install header files
 install(FILES
-  include/path.hpp
-  include/my_dummy_lib_funct2.hpp
-  DESTINATION include 
-  )
+  include/swarm_library/multi_robot_publisher.hpp
+  DESTINATION include
+)
 
-###################################
-# Export config so we can use find_package()
-###################################
-
-# Export the export group. CMake will write a configuration file of the current build tree:
-export (TARGETS
-  swarm_library
-  FILE swarm_library-config.cmake)   # must by <PACKAGE>-config.cmake
-
-# Export build tree to the package registry (~/.cmake/packages/<packag>/)
+# Export build tree to the package registry (~/.cmake/packages/<package>/)
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
+export(PACKAGE swarm_library)
+
+
+
+export(TARGETS
+  swarm_library
+  FILE swarm_library-export.cmake
+)
+
+set (CMAKE_EXPORT_PACKAGE_REGISTRY ON)
 export(PACKAGE swarm_library)
 
 # Install the export group
 install(EXPORT swarm_library-export
   DESTINATION share/${PROJECT_NAME}/cmake/
-  )
+)
 
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # comment the line when a copyright and license is added to all source files
+  set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # comment the line when this package is in a git repo and when
+  # a copyright and license is added to all source files
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
 ###################################
 # Sub-Modules
 ###################################
 add_subdirectory(test)
+
+ament_package()

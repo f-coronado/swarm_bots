@@ -1,2 +1,0 @@
-/usr/bin/ar qc libswarm_library.a CMakeFiles/swarm_library.dir/src/path.cpp.o CMakeFiles/swarm_library.dir/src/my_dummy_lib_funct2.cpp.o
-/usr/bin/ranlib libswarm_library.a
