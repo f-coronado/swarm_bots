@@ -47,9 +47,8 @@ public:
     MultiRobotPublisher(int num_robots);
     ~MultiRobotPublisher();
 
-    /**
-    * @brief Publishes messages to the user defined amount of nodes
-    */
+    int getNumRobots() const { return num_robots; }
+
     void publishMessages();
 
 private:
