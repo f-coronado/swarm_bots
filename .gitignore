@@ -2,5 +2,8 @@
 /log
 /install
 /.vscode
-/src/my_controller/compile_commands.json
-/src/my_model/compile_commands.json
+/src/swarm_library/compile_commands.json
+/src/turtlebot_swarm/compile_commands.json
+/src/swarm_library/build
+/src/swarm_library/install
+/src/swarm_library/log

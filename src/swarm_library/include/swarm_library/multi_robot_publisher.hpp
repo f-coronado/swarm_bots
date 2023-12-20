@@ -9,6 +9,8 @@ public:
     MultiRobotPublisher(int num_robots);
     ~MultiRobotPublisher();
 
+    int getNumRobots() const { return num_robots; }
+
     void publishMessages();
 
 private:
